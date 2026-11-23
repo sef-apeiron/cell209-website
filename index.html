@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CELL209 – Melodeath & Groovemetal aus Luzern</title>
+<meta name="description" content="CELL209 – Melodeath &amp; Groovemetal from Lucerne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Akzentfarbe hier ändern, alles andere ist Schwarz/Weiss */
+  --accent:#a3121a;
+  --bg:#080808; --bg2:#101010; --panel:#141414; --line:#262626;
+  --text:#f2f2f0; --soft:#bdbdb8; --mute:#7d7d79;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:18px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;line-height:1.05;font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* Ankündigungsleiste */
+.ann{background:var(--accent);color:#fff;text-align:center;font-family:'Barlow Condensed';font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:14px;padding:8px 12px;position:relative;z-index:85}
+
+/* Navigation: Logo zentriert, Links links/rechts */
+nav{position:absolute;top:34px;left:0;right:0;z-index:80}
+nav .wrap{display:flex;align-items:center;justify-content:center;height:84px;position:relative}
+.nl,.nr{display:flex;gap:38px;font-family:'Barlow Condensed';font-weight:600;font-size:17px;letter-spacing:.22em;text-transform:uppercase}
+.nr{justify-content:flex-end}
+.nl a,.nr a{color:var(--soft);transition:color .2s;position:relative}
+.nl a:hover,.nr a:hover{color:#fff}
+.nl a::after,.nr a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--accent);transition:width .25s}
+.nl a:hover::after,.nr a:hover::after{width:100%}
+.brand{font-family:'Oswald';font-weight:700;font-size:28px;letter-spacing:.2em;display:flex;align-items:center;gap:10px;color:#fff}
+.brand svg{width:30px;height:30px;color:#fff}
+.burger{display:none;background:none;border:0;color:#fff;font-size:30px;cursor:pointer;justify-self:end}
+.mnav{display:none}
+
+.lang{position:absolute;right:24px;top:50%;transform:translateY(-50%);display:flex;gap:8px;align-items:center;font-family:'Barlow Condensed';font-weight:600;letter-spacing:.15em;font-size:16px}
+.lang button{background:none;border:0;color:var(--mute);cursor:pointer;font:inherit;letter-spacing:inherit;padding:4px 2px;border-bottom:2px solid transparent}
+.lang button:hover{color:#fff}.lang button.on{color:#fff;border-bottom-color:var(--accent)}.lang span{color:#444}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#050505;margin-top:-34px;padding-top:34px}
+.fog{position:absolute;inset:-20%;width:140%;height:140%;opacity:.55;animation:drift 60s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(-3%,2%) scale(1)}to{transform:translate(3%,-2%) scale(1.08)}}
+.hero-cell{position:absolute;left:50%;top:50%;width:min(1000px,130vw);transform:translate(-50%,-50%);opacity:.11}
+.vig{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 45%,transparent 25%,rgba(0,0,0,.85) 100%),linear-gradient(to bottom,rgba(0,0,0,.35),transparent 30%,transparent 70%,var(--bg) 100%)}
+#ash{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-inner{position:relative;z-index:3;padding:120px 20px 80px}
+.logo{font-family:'Oswald';font-weight:700;font-size:clamp(72px,18vw,250px);letter-spacing:.07em;line-height:.9;color:#f2f2f0;
+ text-shadow:0 0 60px rgba(255,255,255,.12),0 6px 0 rgba(0,0,0,.6);position:relative;display:inline-block}
+.logo span{color:var(--accent);text-shadow:0 0 50px rgba(163,18,26,.45)}
+.glitch{animation:glitch 7s infinite steps(1)}
+@keyframes glitch{0%,93%,100%{transform:none}
+ 94%{transform:translate(-5px,2px) skewX(3deg);text-shadow:5px 0 0 rgba(163,18,26,.9),-5px 0 0 rgba(255,255,255,.6)}
+ 96%{transform:translate(6px,-2px) skewX(-4deg);text-shadow:-6px 0 0 rgba(163,18,26,.9),6px 0 0 rgba(255,255,255,.6)}
+ 98%{transform:translate(-2px,0)}}
+.tag{margin-top:22px;font-family:'Oswald';font-weight:400;font-size:clamp(16px,2.6vw,26px);letter-spacing:.42em;text-transform:uppercase;color:var(--soft)}
+.tag i{color:var(--accent);font-style:normal;margin:0 .5em}
+.sub{margin-top:8px;color:var(--mute);font-family:'Barlow Condensed';letter-spacing:.35em;text-transform:uppercase;font-size:15px}
+.cta{margin-top:42px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:'Oswald';letter-spacing:.22em;text-transform:uppercase;font-size:16px;padding:15px 38px;border:1px solid #fff;color:#fff;transition:all .25s;cursor:pointer;background:transparent;display:inline-block}
+.btn.fill{background:#fff;color:#000}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:4;color:var(--mute);font-family:'Barlow Condensed';letter-spacing:.4em;font-size:13px;text-transform:uppercase;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* Bilder */
+.hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(1.15) brightness(.55)}
+.logoimg{display:block;width:min(620px,88vw,64vh);height:auto;margin:0 auto;mix-blend-mode:screen;filter:drop-shadow(0 0 40px rgba(255,255,255,.12))}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.photo{position:relative;border:1px solid var(--line);background:#000}
+.photo img{width:100%;height:100%;display:block;object-fit:cover}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;mix-blend-mode:screen}
+.groupph{margin-bottom:60px;position:relative}
+.groupph img{width:100%;display:block;border:1px solid var(--line)}
+.groupph::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.6);pointer-events:none}
+.m img.pt{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.08);transition:transform .6s}
+.m:hover img.pt{transform:scale(1.05)}
+.divider{height:46vh;min-height:280px;position:relative;overflow:hidden;background:#000}
+.divider img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1) brightness(.6)}
+.divider::before,.divider::after{content:"";position:absolute;left:0;right:0;height:35%;z-index:1}
+.divider::before{top:0;background:linear-gradient(var(--bg),transparent)}
+.divider::after{bottom:0;background:linear-gradient(transparent,var(--bg))}
+.divider q{position:absolute;inset:0;z-index:2;display:grid;place-items:center;quotes:none;font-family:'Oswald';font-size:clamp(26px,5vw,60px);letter-spacing:.3em;text-transform:uppercase;text-align:center;padding:0 20px;text-shadow:0 4px 30px #000}
+.divider q span{color:var(--accent)}
+
+.brand img{height:34px;width:auto;display:block}
+footer .brand img{height:48px}
+.hero{--w:min(780px,86vw)}
+.hlogo{position:absolute;left:50%;top:51.5%;width:calc(var(--w)*1.18);height:auto;transform:translate(-50%,-50%);opacity:.34;mix-blend-mode:lighten;
+ -webkit-mask-image:radial-gradient(circle,#000 62%,transparent 82%);mask-image:radial-gradient(circle,#000 62%,transparent 82%);animation:breathe 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes breathe{from{opacity:.24;transform:translate(-50%,-50%) scale(1)}to{opacity:.4;transform:translate(-50%,-50%) scale(1.05)}}
+.wmhero{display:block;width:min(780px,86vw);height:auto;margin:0 auto;filter:drop-shadow(0 0 30px rgba(0,0,0,.8));animation:wmg 7s infinite steps(1)}
+@keyframes wmg{0%,92%,100%{transform:none;filter:drop-shadow(0 0 30px rgba(0,0,0,.8))}
+ 93%{transform:translate(-6px,2px) skewX(3deg);filter:drop-shadow(6px 0 0 rgba(163,18,26,.95)) drop-shadow(-6px 0 0 rgba(255,255,255,.5))}
+ 95%{transform:translate(7px,-2px) skewX(-4deg);filter:drop-shadow(-7px 0 0 rgba(163,18,26,.95)) drop-shadow(7px 0 0 rgba(255,255,255,.5))}
+ 97%{transform:translate(-2px,0)}}
+#ash{z-index:2!important}.vig{z-index:1!important}
+.hero-inner{position:absolute;inset:0;margin:0;padding:0;display:block;z-index:3}
+.wmw{position:absolute;left:50%;top:51.5%;width:var(--w);transform:translate(-50%,-50%)}
+.wmw .wmhero{width:100%}
+.hero-rest{position:absolute;left:0;right:0;top:calc(51.5% + var(--w)*.1125 + 30px);text-align:center;padding:0 20px}
+.tag,.sub{text-shadow:0 2px 14px #000,0 0 6px #000}
+/* Sektionen */
+section{padding:110px 0;position:relative}
+.sh{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:46px}
+.sh h2{font-size:clamp(38px,6vw,76px)}
+.sh span{font-family:'Barlow Condensed';letter-spacing:.3em;color:var(--accent);text-transform:uppercase;font-size:15px;font-weight:600}
+p{color:var(--soft);margin-bottom:16px}
+p.lead{font-size:21px;color:#dcdcd8}
+.note{margin-top:22px;font-size:15px;color:var(--mute);border-left:3px solid var(--accent);padding-left:14px}
+
+/* Release-Hero */
+.rel{display:grid;grid-template-columns:420px 1fr;gap:60px;align-items:center}
+.cover{aspect-ratio:1;background:#000;border:1px solid var(--line);position:relative;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.cover svg{width:100%;height:100%;display:block}
+.rel h3{font-size:clamp(34px,4.5vw,58px);margin:8px 0 14px}
+.rel small{font-family:'Barlow Condensed';letter-spacing:.35em;text-transform:uppercase;color:var(--accent);font-weight:600;font-size:15px}
+.tracks{margin-top:26px;border-top:1px solid var(--line)}
+.tr{display:grid;grid-template-columns:48px 1fr auto auto;gap:18px;align-items:center;padding:15px 4px;border-bottom:1px solid var(--line)}
+.tr .n{font-family:'Oswald';color:var(--mute);font-size:20px}
+.tr b{font-family:'Oswald';font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:19px}
+.eq{display:flex;gap:3px;align-items:flex-end;height:26px}
+.eq i{width:3px;background:#fff;opacity:.55;height:20%;animation:eq 1s infinite ease-in-out}
+@keyframes eq{50%{height:100%}}
+.eq i:nth-child(1){animation-delay:-.9s}.eq i:nth-child(2){animation-delay:-.5s}.eq i:nth-child(3){animation-delay:-.2s}.eq i:nth-child(4){animation-delay:-.7s}.eq i:nth-child(5){animation-delay:-.35s}.eq i:nth-child(6){animation-delay:-.8s}
+.soon{font-family:'Barlow Condensed';letter-spacing:.25em;text-transform:uppercase;font-size:13px;color:#fff;border:1px solid var(--accent);padding:3px 10px;background:rgba(163,18,26,.2)}
+
+.trk{border-bottom:1px solid var(--line)}.trk .tr{border-bottom:0}
+.pl{font-family:'Oswald';letter-spacing:.2em;text-transform:uppercase;font-size:14px;color:#fff;background:transparent;border:1px solid #fff;padding:8px 18px;cursor:pointer;transition:all .2s}
+.pl:hover,.pl.on{background:var(--accent);border-color:var(--accent)}
+.pwrap{max-height:0;overflow:hidden;transition:max-height .45s}
+.pwrap.open{max-height:260px}
+.pwrap iframe{display:block;width:100%;height:166px;border:0;background:#111}
+.alt{font-size:14px;color:var(--mute);margin:8px 0 14px}.alt a{border-bottom:1px solid var(--accent)}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.85);padding:20px;overflow:auto}
+.modal.open{display:flex}
+.mbox{background:#0e0e0e;border:1px solid var(--line);max-width:660px;width:100%;padding:36px;position:relative;max-height:92vh;overflow:auto;box-shadow:0 30px 100px #000}
+.mbox::before{content:"";position:absolute;left:0;top:0;width:60px;height:3px;background:var(--accent)}
+.mbox h3{font-size:34px;margin-bottom:22px}
+.mx{position:absolute;right:14px;top:10px;background:none;border:0;color:var(--soft);font-size:24px;cursor:pointer}.mx:hover{color:#fff}
+.mbox label{display:block;font-family:'Barlow Condensed';letter-spacing:.18em;text-transform:uppercase;font-size:14px;color:var(--soft);margin-bottom:16px;font-weight:600}
+.mbox input,.mbox select,.mbox textarea{display:block;width:100%;margin-top:6px;background:#050505;border:1px solid #2c2c2c;color:#fff;font:inherit;font-size:17px;letter-spacing:0;text-transform:none;padding:12px 14px;border-radius:0}
+.mbox input:focus,.mbox select:focus,.mbox textarea:focus{outline:0;border-color:var(--accent)}
+.mbox textarea{resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ferr{color:#ff6a6a;font-size:15px;margin:0 0 14px}
+#fdone .facts{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+#fdone .btn{padding:12px 24px;font-size:14px}
+#fdone.sent textarea,#fdone.sent .facts,#fdone.sent .alt{display:none}
+@media(max-width:600px){.two{grid-template-columns:1fr}.mbox{padding:28px 20px}}
+/* Video */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vid{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);overflow:hidden;cursor:pointer}
+.vid svg.bg{width:100%;height:100%;display:block;transition:transform .6s,filter .4s;filter:grayscale(1) contrast(1.1)}
+.vid:hover svg.bg{transform:scale(1.06);filter:grayscale(.3)}
+.play{position:absolute;left:50%;top:50%;width:64px;height:64px;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.45);transition:all .25s}
+.vid:hover .play{background:var(--accent);border-color:var(--accent)}
+.play::before{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.vid figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 16px;font-family:'Oswald';letter-spacing:.14em;text-transform:uppercase;font-size:14px;background:linear-gradient(0deg,rgba(0,0,0,.9),transparent)}
+
+/* Tour */
+.tour{border-top:1px solid var(--line)}
+.show{display:grid;grid-template-columns:190px 1fr 1fr auto;gap:20px;align-items:center;padding:22px 6px;border-bottom:1px solid var(--line);transition:background .2s}
+.show:hover{background:rgba(255,255,255,.03)}
+.show .d{font-family:'Oswald';font-size:26px;letter-spacing:.08em;color:var(--mute)}
+.show .c{font-family:'Oswald';font-size:24px;letter-spacing:.1em;text-transform:uppercase}
+.show .v{color:var(--mute)}
+
+/* Band */
+.band{background:var(--bg2)}
+.members{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.m{--H:250px;position:relative;height:var(--H);border:1px solid var(--line);background:#000;overflow:hidden;display:flex;align-items:center;transition:border-color .3s}
+.m:hover{border-color:var(--accent)}
+.m:last-child{grid-column:1/-1;max-width:calc(50% - 7px);width:100%;margin:0 auto}
+.m .ph{position:absolute;left:0;top:0;bottom:0;width:52%;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 calc(var(--H)*.1),#000 calc(var(--H)*.29),transparent calc(var(--H)*.53));mask-image:linear-gradient(to right,transparent 0,#000 calc(var(--H)*.1),#000 calc(var(--H)*.29),transparent calc(var(--H)*.53))}
+.m .ph img{width:100%;height:100%;object-fit:cover;object-position:left top;filter:contrast(1.08);transition:transform .6s;display:block;transform:scale(1.4);transform-origin:0 12%}
+.m:hover .ph img{transform:scale(1.46)}
+.ph0{display:grid;place-items:center;-webkit-mask-image:none!important;mask-image:none!important}
+.ph0 svg{height:80%;width:auto;fill:#222;margin-left:10%}
+.m .tx{position:relative;z-index:2;margin-left:auto;width:50%;padding-right:24px}
+.m h3{font-size:clamp(34px,4.4vw,52px);margin-top:4px}
+.m small{font-family:'Barlow Condensed';letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-size:16px;font-weight:600}
+.m .nm{color:var(--mute);font-size:14px;margin:4px 0 0}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:60px;align-items:center}
+.infl{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.infl span{font-family:'Oswald';letter-spacing:.14em;text-transform:uppercase;font-size:15px;border:1px solid var(--line);padding:8px 16px;color:var(--soft);transition:all .2s}
+.infl span:hover{border-color:var(--accent);color:#fff}
+.abox{aspect-ratio:4/3;border:1px solid var(--line);background:#000}
+.abox svg{width:100%;height:100%;display:block}
+
+/* Kontakt */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cc{border:1px solid var(--line);background:var(--panel);padding:30px 24px}
+.cc small{font-family:'Barlow Condensed';letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-size:14px;font-weight:600}
+.cc h3{font-size:26px;margin:6px 0 10px}
+.cc p{margin:0;font-size:16px}
+.cc .v{color:#fff;font-family:'Barlow Condensed';font-size:21px;letter-spacing:.04em;word-break:break-word}
+.social{display:flex;gap:14px;justify-content:center;margin-bottom:22px}
+.social span{width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;font-family:'Oswald';font-size:13px;letter-spacing:.06em;color:var(--soft);transition:all .2s}
+.social span:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+footer{border-top:1px solid var(--line);padding:60px 0 40px;text-align:center;background:#040404}
+footer .brand{justify-content:center;margin-bottom:12px}
+footer p{font-size:14px;color:var(--mute);margin:4px 0}
+footer .fl{display:flex;gap:26px;justify-content:center;margin-top:16px;font-family:'Barlow Condensed';letter-spacing:.2em;text-transform:uppercase;font-size:14px;color:var(--mute)}
+footer .fl a:hover{color:#fff}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+ nav .wrap{justify-content:space-between;height:72px;padding:0 24px}
+ .lang{position:static;transform:none}
+ .nl,.nr{display:none}
+ .brand{font-size:24px}
+ .burger{display:block}
+ .mnav{position:absolute;top:106px;left:0;right:0;background:rgba(5,5,5,.98);border-bottom:1px solid var(--line);flex-direction:column;padding:6px 24px 18px;z-index:79;font-family:'Barlow Condensed';letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+ .mnav.open{display:flex}
+ .mnav a{padding:14px 0;border-bottom:1px solid var(--line);color:var(--soft)}
+ .rel,.about{grid-template-columns:1fr;gap:34px}
+ .vgrid,.cgrid{grid-template-columns:1fr}
+ .members{grid-template-columns:1fr}
+ .m{--H:190px}.m:last-child{max-width:none}.m .tx{width:48%;padding-right:14px}
+ .show{grid-template-columns:118px 1fr auto}.show .d{font-size:19px}.show .c{font-size:19px}.show .v{display:none}
+ section{padding:80px 0}
+ .tr{grid-template-columns:34px 1fr auto}.tr .eq{display:none}
+}
+@media(max-width:520px){body{font-size:17px}.cta .btn{padding:14px 28px}.m h3{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cellmark" viewBox="-50 -50 100 100">
+      <polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="none" stroke="currentColor" stroke-width="5"/>
+      <circle r="22" fill="none" stroke="#a3121a" stroke-width="5"/>
+      <circle r="8" fill="#a3121a"/>
+      <path d="M-46 0H-22M22 0H46" stroke="currentColor" stroke-width="4"/>
+    </symbol>
+    <filter id="fogf" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".006 .011" numOctaves="5" seed="7"/>
+      <feColorMatrix values="0 0 0 0 .78  0 0 0 0 .78  0 0 0 0 .78  0 0 0 1.5 -.55"/>
+    </filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <radialGradient id="red" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#d4202a"/><stop offset="1" stop-color="#3a0408"/></radialGradient>
+  </defs>
+</svg>
+
+<div class="ann" data-i="ann">Neue Songs in Arbeit · bleib dran</div>
+
+<nav>
+  <div class="wrap">
+    <button class="burger" id="burger" aria-label="Menü">☰</button>
+    <div class="nl">
+      <a href="#music" data-i="n_music">Musik</a>
+      <a href="#video" data-i="n_video">Video</a>
+      <a href="#tour" data-i="n_tour">Tour</a>
+      <a href="#band" data-i="n_band">Band</a>
+      <a href="#contact" data-i="n_contact">Kontakt</a>
+    </div>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-l="de" class="on">DE</button><span>|</span><button type="button" data-l="en">EN</button>
+    </div>
+  </div>
+</nav>
+<div class="mnav" id="mnav">
+  <a href="#music" data-i="n_music">Musik</a><a href="#video" data-i="n_video">Video</a><a href="#tour" data-i="n_tour">Tour</a><a href="#band" data-i="n_band">Band</a><a href="#contact" data-i="n_contact">Kontakt</a>
+</div>
+
+<header class="hero" id="top">
+  <img class="hbg" src="img/korridor.jpg" alt="">
+  <img class="hlogo" src="img/logo.jpg" alt="" aria-hidden="true">
+  <canvas id="ash"></canvas>
+  <div class="vig"></div>
+  <div class="hero-inner">
+    <h1 class="vh">CELL209</h1>
+    <div class="wmw"><img class="wmhero" src="img/wordmark.png" alt="CELL209"></div>
+    <div class="hero-rest">
+      <div class="tag">Melodeath <i>/</i> Groovemetal</div>
+      <div class="sub" data-i="sub">Luzern · Schweiz</div>
+      <div class="cta">
+        <a href="#music" class="btn fill" data-i="b_listen">Hören</a>
+        <a href="#band" class="btn" data-i="b_band">Die Band</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll">Scroll ↓</div>
+</header>
+
+<section id="music">
+  <div class="wrap">
+    <div class="sh rv"><h2 data-i="h_music">Musik</h2><span data-i="s_new">Neu</span></div>
+    <div class="rel">
+      <div class="cover rv"><img src="img/logo.jpg" alt="CELL209 Artwork"></div>
+      <div class="rv">
+        <small data-i="m_first">Jetzt hören</small>
+        <h3>Smoke <span style="color:var(--accent)">/</span> Split</h3>
+        <p class="lead" data-i="m_lead">Unsere ersten Songs: melodische Leads, schwere Grooves und Screams aus Luzern.</p>
+        <div class="tracks">
+          <div class="trk">
+            <div class="tr"><span class="n">01</span><b>Smoke</b><div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i></div><button class="pl" type="button" aria-expanded="false" aria-label="Smoke abspielen">▶ Play</button></div>
+            <div class="pwrap" data-url="https://soundcloud.com/cell209/smoke"><p class="alt"><a href="https://soundcloud.com/cell209/smoke" target="_blank" rel="noopener" data-i="t_open">Auf SoundCloud öffnen</a></p></div>
+          </div>
+          <div class="trk">
+            <div class="tr"><span class="n">02</span><b>Split</b><div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i></div><button class="pl" type="button" aria-expanded="false" aria-label="Split abspielen">▶ Play</button></div>
+            <div class="pwrap" data-url="https://soundcloud.com/cell209/split"><p class="alt"><a href="https://soundcloud.com/cell209/split" target="_blank" rel="noopener" data-i="t_open">Auf SoundCloud öffnen</a></p></div>
+          </div>
+        </div>
+        <p style="margin-top:28px"><a class="btn fill" href="https://soundcloud.com/cell209" target="_blank" rel="noopener" data-i="b_sc">Auf SoundCloud hören</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sh rv"><h2>Video</h2><span data-i="s_soon">Bald</span></div>
+    <div class="vgrid">
+      <figure class="vid rv"><svg class="bg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#0a0a0a"/><rect width="320" height="180" filter="url(#fogf)" opacity=".8"/><g fill="none" stroke="#fff" opacity=".4"><circle cx="160" cy="90" r="60"/><polygon points="160,25 216,57 216,123 160,155 104,123 104,57"/></g></svg><div class="play"></div><figcaption data-i="v1">Musikvideo · folgt</figcaption></figure>
+      <figure class="vid rv"><svg class="bg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#0a0a0a"/><g stroke="#fff" stroke-width="1.5" fill="none" opacity=".6"><path d="M0 90 20 90 30 50 40 130 52 20 64 160 76 60 88 120 100 85 120 90 140 30 150 150 162 75 178 105 190 90 320 90"/></g></svg><div class="play"></div><figcaption data-i="v2">Studio-Session · folgt</figcaption></figure>
+      <figure class="vid rv"><svg class="bg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#0a0a0a"/><rect width="320" height="180" filter="url(#fogf)" opacity=".7"/><path d="M0 150 70 100 120 130 190 70 250 120 320 90V180H0Z" fill="#000"/></svg><div class="play"></div><figcaption data-i="v3">Live · folgt</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="tour">
+  <div class="wrap">
+    <div class="sh rv"><h2>Tour</h2><span>Live</span></div>
+    <div class="tour rv">
+      <div class="show"><span class="d">06.03.2027</span><span class="c">Die Zelle rockt</span><span class="v">Sedel</span><span class="soon" data-i="t_time">Zeit folgt</span></div>
+      <div class="show"><span class="d">···</span><span class="c" style="color:var(--mute)" data-i="t_more">Weitere Termine folgen</span><span class="v"></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="band">
+  <div class="wrap">
+    <div class="sh rv"><h2>Band</h2><span data-i="s_city">Luzern</span></div>
+    <div class="about">
+      <div class="rv">
+        <p class="lead" data-i="a_lead">CELL209 spielt Melodeath und Groovemetal aus Luzern: scharfe Twin-Gitarren, tiefe Riffs, Screams und Refrains, die hängen bleiben.</p>
+        <p data-i="a_text">Wir schreiben und produzieren unsere Songs selbst und wollen sie so druckvoll wie möglich auf die Bühne bringen.</p>
+      </div>
+      <div class="photo rv" style="aspect-ratio:3/2"><img src="img/band.jpg" alt="CELL209" loading="lazy"></div>
+    </div>
+    <div class="members">
+      <article class="m rv"><div class="ph"><img src="img/p1.jpg" alt="Sef"></div><div class="tx"><small data-i="r_gtr">Gitarre</small><h3>Sef</h3></div></article>
+      <article class="m rv"><div class="ph"><img src="img/p2.jpg" alt="Joris"></div><div class="tx"><small>Bass</small><h3>Joris</h3></div></article>
+      <article class="m rv"><div class="ph"><img src="img/p3.jpg" alt="Yak"></div><div class="tx"><small>Vocals</small><h3>Yak</h3></div></article>
+      <article class="m rv"><div class="ph ph0"><svg viewBox="0 0 200 250" aria-hidden="true"><circle cx="100" cy="85" r="46"/><path d="M20 250Q24 150 100 142 176 150 180 250Z"/></svg></div><div class="tx"><small data-i="r_gtr">Gitarre</small><h3>Lee</h3><p class="nm" data-i="photo_soon">Foto folgt</p></div></article>
+      <article class="m rv"><div class="ph"><img src="img/p5.jpg" alt="Limi"></div><div class="tx"><small>Drums</small><h3>Limi</h3></div></article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><img src="img/korridor.jpg" alt="" loading="lazy"><q>Melodeath &amp; Groovemetal <br>from <span>Lucerne</span></q></div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sh rv"><h2 data-i="h_contact">Kontakt</h2><span>Booking</span></div>
+    <div class="cgrid">
+      <div class="cc rv"><small data-i="c_book">Booking &amp; Anfragen</small><h3 data-i="c_formh">Kontaktformular</h3><p style="margin-bottom:18px" data-i="c_formp">Konzert, Booking, Presse oder Zusammenarbeit: schick uns deine Anfrage.</p><button type="button" class="btn fill" id="openForm" data-i="f_open">Anfrage senden</button></div>
+      <div class="cc rv"><small>SoundCloud</small><h3 data-i="c_follow">Folge uns</h3><p class="v"><a href="https://soundcloud.com/cell209" target="_blank" rel="noopener" style="border-bottom:1px solid var(--accent)">soundcloud.com/cell209</a></p></div>
+      <div class="cc rv"><small data-i="c_base">Basis</small><h3 data-i="s_city">Luzern</h3><p data-i="c_home">Heimatort der Band, Zentralschweiz.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="social"><a href="https://soundcloud.com/cell209" target="_blank" rel="noopener" aria-label="SoundCloud" style="width:auto;padding:0 16px;height:42px;border:1px solid var(--line);display:grid;place-items:center;font-family:'Oswald';font-size:13px;letter-spacing:.14em;color:var(--soft)">SOUNDCLOUD</a></div>
+    <div class="brand" aria-label="CELL209"><img src="img/wordmark.png" alt="CELL209"></div>
+    <p data-i="f_tag">Melodeath &amp; Groovemetal aus Luzern</p>
+    <p>© 2026 CELL209</p>
+    <div class="fl"><a href="#" data-i="f_imp">Impressum</a><a href="#" data-i="f_priv">Datenschutz</a></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="mbox">
+    <button type="button" class="mx" id="mclose" aria-label="Schliessen">✕</button>
+    <h3 id="mtitle" data-i="f_title">Booking &amp; Anfrage</h3>
+    <form id="bform" novalidate>
+      <label><span data-i="f_name">Name</span> *<input name="name" autocomplete="name" required></label>
+      <div class="two">
+        <label><span data-i="f_mail">E-Mail</span> *<input name="mail" type="email" autocomplete="email" required></label>
+        <label><span data-i="f_phone">Telefon (optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label><span data-i="f_type">Art der Anfrage</span>
+        <select name="type"><option value="book" data-i="o_book">Konzert / Booking</option><option value="press" data-i="o_press">Presse / Medien</option><option value="collab" data-i="o_collab">Zusammenarbeit</option><option value="other" data-i="o_other">Sonstiges</option></select></label>
+      <div class="two">
+        <label><span data-i="f_event">Veranstaltung / Datum</span><input name="event"></label>
+        <label><span data-i="f_place">Ort / Venue</span><input name="place"></label>
+      </div>
+      <label><span data-i="f_msg">Nachricht</span> *<textarea name="msg" rows="5" required></textarea></label>
+      <p class="ferr" id="ferr" hidden></p>
+      <button type="submit" class="btn fill" data-i="f_submit">Anfrage vorbereiten</button>
+    </form>
+    <div id="fdone" hidden>
+      <p class="lead" id="flead" data-i="f_ready">Deine Anfrage ist bereit.</p>
+      <p class="alt" id="fnote"></p>
+      <textarea id="fout" rows="8" readonly></textarea>
+      <div class="facts">
+        <a class="btn fill" id="fmail" href="#" data-i="f_mailbtn">In E-Mail-App öffnen</a>
+        <button type="button" class="btn" id="fcopy" data-i="f_copy">Text kopieren</button>
+        <button type="button" class="btn" id="fback" data-i="f_back">Bearbeiten</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const T={
+ de:{c_formh:"Kontaktformular",c_formp:"Konzert, Booking, Presse oder Zusammenarbeit: schick uns deine Anfrage.",f_open:"Anfrage senden",f_title:"Booking & Anfrage",f_name:"Name",f_mail:"E-Mail",f_phone:"Telefon (optional)",f_type:"Art der Anfrage",o_book:"Konzert / Booking",o_press:"Presse / Medien",o_collab:"Zusammenarbeit",o_other:"Sonstiges",f_event:"Veranstaltung / Datum",f_place:"Ort / Venue",f_msg:"Nachricht",f_submit:"Anfrage vorbereiten",f_req:"Bitte Name, E-Mail und Nachricht ausfüllen.",f_ready:"Deine Anfrage ist bereit.",f_mailbtn:"In E-Mail-App öffnen",f_copy:"Text kopieren",f_copied:"Kopiert ✓",f_noaddr:"Die Kontakt-E-Mail der Band folgt. Bis dahin kannst du den Text kopieren.",f_hasaddr:"Sende den Text an: ",f_back:"Bearbeiten",f_sending:"Wird gesendet …",f_sent:"Danke! Deine Anfrage wurde gesendet. Wir melden uns bei dir.",f_fail:"Senden hat nicht geklappt. Du kannst den Text kopieren und uns direkt schicken.",ann:"Neue Songs in Arbeit · bleib dran",n_music:"Musik",n_video:"Video",n_tour:"Tour",n_band:"Band",n_contact:"Kontakt",
+  sub:"Luzern · Schweiz",b_listen:"Hören",b_band:"Die Band",h_music:"Musik",s_new:"Neu",m_first:"Jetzt hören",m_title:"Titel folgt",
+  m_lead:"Unsere ersten Songs: melodische Leads, schwere Grooves und Screams aus Luzern.",t_open:"Auf SoundCloud öffnen",
+  t_wip:"In Arbeit",t_soon:"Bald",b_sc:"Auf SoundCloud hören",s_soon:"Bald",v1:"Musikvideo · folgt",v2:"Studio-Session · folgt",v3:"Live · folgt",
+  t_time:"Zeit folgt",t_more:"Weitere Termine folgen",s_city:"Luzern",
+  a_lead:"CELL209 spielt Melodeath und Groovemetal aus Luzern: scharfe Twin-Gitarren, tiefe Riffs, Screams und Refrains, die hängen bleiben.",
+  a_text:"Wir schreiben und produzieren unsere Songs selbst und wollen sie so druckvoll wie möglich auf die Bühne bringen.",
+  r_gtr:"Gitarre",photo_soon:"Foto folgt",h_contact:"Kontakt",c_book:"Booking & Anfragen",c_mail:"E-Mail folgt",c_follow:"Folge uns",c_base:"Basis",
+  c_home:"Heimatort der Band, Zentralschweiz.",f_tag:"Melodeath & Groovemetal aus Luzern",f_imp:"Impressum",f_priv:"Datenschutz"},
+ en:{c_formh:"Contact form",c_formp:"Concert, booking, press or collaboration: send us your enquiry.",f_open:"Send enquiry",f_title:"Booking & enquiry",f_name:"Name",f_mail:"E-mail",f_phone:"Phone (optional)",f_type:"Type of enquiry",o_book:"Concert / booking",o_press:"Press / media",o_collab:"Collaboration",o_other:"Other",f_event:"Event / date",f_place:"Place / venue",f_msg:"Message",f_submit:"Prepare enquiry",f_req:"Please fill in name, e-mail and message.",f_ready:"Your enquiry is ready.",f_mailbtn:"Open in e-mail app",f_copy:"Copy text",f_copied:"Copied ✓",f_noaddr:"The band's contact e-mail is coming soon. Until then you can copy the text.",f_hasaddr:"Send the text to: ",f_back:"Edit",f_sending:"Sending …",f_sent:"Thank you! Your enquiry has been sent. We will get back to you.",f_fail:"Sending failed. You can copy the text and send it to us directly.",ann:"New songs in the works · stay tuned",n_music:"Music",n_video:"Video",n_tour:"Shows",n_band:"Band",n_contact:"Contact",
+  sub:"Lucerne · Switzerland",b_listen:"Listen",b_band:"The Band",h_music:"Music",s_new:"New",m_first:"Listen now",m_title:"Title coming soon",
+  m_lead:"Our first songs: melodic leads, heavy grooves and screams from Lucerne.",t_open:"Open on SoundCloud",
+  t_wip:"In progress",t_soon:"Soon",b_sc:"Listen on SoundCloud",s_soon:"Soon",v1:"Music video · coming soon",v2:"Studio session · coming soon",v3:"Live · coming soon",
+  t_time:"Time TBA",t_more:"More dates to follow",s_city:"Lucerne",
+  a_lead:"CELL209 plays melodeath and groove metal from Lucerne: sharp twin guitars, deep riffs, screams and hooks that stick.",
+  a_text:"We write and produce our songs ourselves and want to bring them to the stage as powerfully as possible.",
+  r_gtr:"Guitar",photo_soon:"Photo coming soon",h_contact:"Contact",c_book:"Booking & enquiries",c_mail:"E-mail coming soon",c_follow:"Follow us",c_base:"Base",
+  c_home:"Home of the band, Central Switzerland.",f_tag:"Melodeath & Groovemetal from Lucerne",f_imp:"Imprint",f_priv:"Privacy"}
+};
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i]').forEach(el=>{const v=T[l][el.dataset.i];if(v!==undefined)el.textContent=v});
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  try{localStorage.setItem('cell209-lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+let L='de';try{L=localStorage.getItem('cell209-lang')||'de'}catch(e){}
+if(L!=='de')setLang(L);
+
+
+document.querySelectorAll('.trk').forEach(t=>{
+  const b=t.querySelector('.pl'),w=t.querySelector('.pwrap');
+  b.onclick=()=>{
+    const open=!w.classList.contains('open');
+    if(open&&!w.querySelector('iframe')){
+      const f=document.createElement('iframe');
+      f.title='SoundCloud: '+t.querySelector('b').textContent;
+      f.allow='autoplay';f.loading='lazy';
+      f.src='https://w.soundcloud.com/player/?url='+encodeURIComponent(w.dataset.url)+'&color=%23a3121a&auto_play=true&hide_related=true&show_comments=false&show_reposts=false&show_teaser=false&visual=false';
+      w.insertBefore(f,w.firstChild);
+    }
+    w.classList.toggle('open',open);b.classList.toggle('on',open);b.setAttribute('aria-expanded',open);
+  };
+});
+
+// Anfrage-Formular
+const W3F_KEY=''; // <- kostenloser Web3Forms-Access-Key (web3forms.com, Band-E-Mail eingeben)
+const MAIL='';    // <- optional: Band-E-Mail als Fallback für den Button «In E-Mail-App öffnen»
+(function(){
+  const M=document.getElementById('modal'),F=document.getElementById('bform'),D=document.getElementById('fdone'),
+        err=document.getElementById('ferr'),lead=document.getElementById('flead'),out=document.getElementById('fout'),note=document.getElementById('fnote'),
+        ml=document.getElementById('fmail'),cp=document.getElementById('fcopy');
+  const lang=()=>document.documentElement.lang==='en'?'en':'de';
+  const tt=k=>T[lang()][k];
+  function open(){M.classList.add('open');F.hidden=false;D.hidden=true;D.classList.remove('sent');lead.textContent=tt('f_ready');err.hidden=true;document.body.style.overflow='hidden';setTimeout(()=>F.name.focus(),50)}
+  function close(){M.classList.remove('open');document.body.style.overflow=''}
+  document.getElementById('openForm').onclick=open;
+  document.getElementById('mclose').onclick=close;
+  M.addEventListener('click',e=>{if(e.target===M)close()});
+  addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+  document.getElementById('fback').onclick=()=>{F.hidden=false;D.hidden=true};
+  F.addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=n=>F.elements[n].value.trim();
+    if(!v('name')||!v('mail')||!v('msg')||!/^\S+@\S+\.\S+$/.test(v('mail'))){err.textContent=tt('f_req');err.hidden=false;return}
+    err.hidden=true;
+    const typ=F.elements.type.options[F.elements.type.selectedIndex].textContent;
+    const subj='CELL209 – '+typ;
+    const lines=[tt('f_name')+': '+v('name'),tt('f_mail')+': '+v('mail')];
+    if(v('phone'))lines.push(tt('f_phone').replace(' (optional)','').replace(' (optional)','')+': '+v('phone'));
+    lines.push(tt('f_type')+': '+typ);
+    if(v('event'))lines.push(tt('f_event')+': '+v('event'));
+    if(v('place'))lines.push(tt('f_place')+': '+v('place'));
+    lines.push('', v('msg'));
+    const body=lines.join('\n');
+    out.value=subj+'\n\n'+body;
+    const fallback=(failed)=>{
+      if(MAIL){ml.hidden=false;ml.href='mailto:'+MAIL+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);note.textContent=(failed?tt('f_fail')+' ':'')+tt('f_hasaddr')+MAIL}
+      else{ml.hidden=true;note.textContent=failed?tt('f_fail'):tt('f_noaddr')}
+      D.classList.remove('sent');lead.textContent=tt('f_ready');F.hidden=true;D.hidden=false;
+    };
+    if(!W3F_KEY){fallback(false);return}
+    const sb=F.querySelector('button[type=submit]'),lbl=sb.textContent;
+    sb.disabled=true;sb.textContent=tt('f_sending');
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:W3F_KEY,subject:subj,from_name:'CELL209 Website',name:v('name'),email:v('mail'),phone:v('phone'),
+        anfrage_art:typ,veranstaltung:v('event'),ort:v('place'),message:v('msg'),botcheck:''})})
+      .then(r=>r.json()).then(j=>{
+        if(!j.success)throw new Error('x');
+        D.classList.add('sent');lead.textContent=tt('f_sent');F.hidden=true;D.hidden=false;F.reset();
+      }).catch(()=>fallback(true))
+      .finally(()=>{sb.disabled=false;sb.textContent=lbl});
+  });
+  cp.onclick=async()=>{
+    try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();try{document.execCommand('copy')}catch(_){}}
+    const o=cp.textContent;cp.textContent=tt('f_copied');setTimeout(()=>{cp.textContent=tt('f_copy')},1800);
+  };
+})();
+const mnav=document.getElementById('mnav');
+document.getElementById('burger').onclick=()=>mnav.classList.toggle('open');
+mnav.querySelectorAll('a').forEach(a=>a.onclick=()=>mnav.classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+(function(){
+  const c=document.getElementById('ash'),x=c.getContext('2d');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  let w,h,ps=[];
+  function rs(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight}
+  addEventListener('resize',rs);rs();
+  const N=Math.min(90,Math.floor(w/14));
+  function mk(init){return{x:Math.random()*w,y:init?Math.random()*h:-10,r:Math.random()*1.8+.3,v:Math.random()*.5+.15,d:Math.random()*6.28,red:Math.random()<.12}}
+  for(let i=0;i<N;i++)ps.push(mk(true));
+  (function tick(){
+    x.clearRect(0,0,w,h);
+    ps.forEach((p,i)=>{
+      p.y+=p.v;p.d+=.015;p.x+=Math.sin(p.d)*.4;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);
+      x.fillStyle=p.red?'rgba(212,32,42,.8)':'rgba(230,230,225,'+(.15+p.r*.2)+')';
+      x.fill();
+      if(p.y>h+10)ps[i]=mk(false);
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>
